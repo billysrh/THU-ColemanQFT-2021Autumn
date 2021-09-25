@@ -1,0 +1,119 @@
+\ifx\ALL\undefined
+\input{preamble}
+\begin{document}
+\maketitle
+\setcounter{chapter}{0}
+\fi
+
+\chapter{相对论性量子力学}
+\section{相对论与多体效应}
+狭义相对论: $E=mc^2$$\Rightarrow$粒子可以产生湮灭$\Rightarrow$应该考虑所有多体过程的影响.
+\section{量子力学的基本假定}
+\begin{enumerate}[(i)]
+    \item 物理态用一个Hilbert空间$\mathcal{H}$上的射线表示, 归一化后可记作$|\phi\rangle$注意: 我们认为它包含了这个态的所有信息, 包括不同时间, 不同位置等等自由度处的信息;
+        \begin{remark}
+            这实际上是海森堡绘景的意思, 不过从这里开始我们才能更好地理解什么是相对论协变性, 先暂且忘记已经学过的量子力学吧, 我们会重建它的.
+        \end{remark}
+    \item 在闵可夫斯基时空中一个区域$O$上进行的观测对应的可观测量是物理态所在Hilbert空间$\mathcal{H}$上厄米算子构成的代数, 具体来说要求对算符加法, 算符乘法, 复数的数乘, 算符的共轭转置封闭. 将它记作$\mathcal{A}(O)$;
+    \item 对于时空区域$O_1, O_2$如果有$O_1\subset O_2$, 那么就有$\mathcal{A}(O_1)\subset \mathcal{A}(O_2)$;
+    \item 由于我们可以在时空中的任意一个匀速运动的, 在任意时空位置的实验室里进行实验, 并且我们都会赋予测量的物理量一组名称和它们之间的关系, 那么我们应当认为这样的命名具有一致性, 也就是说, 对于任意一个$\operatorname{SO}^+(3, 1)\ltimes\mathbb{R}^4$中的群元素(也就是联系不同的匀速运动, 在不同时空位置的实验室的变换)$(\Lambda, a)$有对应的从$\mathcal{A}(O)$到$\mathcal{A}(\Lambda O+a)$的代数同构$\alpha_{(\Lambda, a)}$, 也就是说要与算符加法, 算符乘法, 复数的数乘, 算符的共轭转置操作互易, 也就是保持这些结构. 而且我们可以连续作用变换: $\alpha_{(\Lambda, a)}\alpha_{(\Lambda', a')}=\alpha_{(\Lambda, a)(\Lambda', a')}$;
+        \begin{remark}
+            肯定有人要问, 那么时间反演和空间反射操作会怎样呢? 对此笔者有个暂且能搪塞过去的理由, 由于我们不能连续操作一个实验室使它空间反演, 或者让它沿时间反方向运转, 所以我们暂且不知道这些实验室里的物理是否与外界一致, 也就先不做这些要求.
+        \end{remark}
+    \item 将归一化的态矢在Hilbert空间内的内积$|\langle\psi|\phi\rangle|^2$理解为$|\phi\rangle$处于$|\psi\rangle$态上的概率.
+    \item 如果两个时空区域$O_1, O_2$没有任何因果联系, 那么有$[\mathcal{A}(O_1), \mathcal{A}(O_2)]=0$, 也就是两个空间上做的测量结果应当没有任何关联.
+\end{enumerate}\par
+现在我们来看看这些原则能给我们带来什么. 我们从(iv)开始, 显然如果我们给每个$(\Lambda, a)$对应上一个$\mathcal{H}$上的酉算子$U(\Lambda, a)$, 使得$\alpha_{(\Lambda, a)}(O)=U(\Lambda, a)OU^{-1}(\Lambda, a)$, 而且要求$U(\Lambda, a)U(\Lambda', a')=e^{i\theta}U((\Lambda, a)(\Lambda', a'))$, 那么就满足了所有(iv)的要求.
+\begin{remark}
+    其实笔者暂时也不清楚这样的$\alpha$还能有什么形式. 或许是有定理能保证它的形式总是差不多是这样的.
+\end{remark}
+这样一来我们需要实现$\operatorname{SO}^+(3, 1)\ltimes\mathbb{R}^4$的投影表示, 数学上我们可以证明, 这就对应着$\operatorname{SO}^+(3, 1)\ltimes\mathbb{R}^4$万有覆叠群$SL(2, \mathbb{C})\ltimes\mathbb{R}^4$的通常表示.\par
+不过我们可以先不管这些数学, 以启发式的方式捉摸一些$U$的性质.\par
+我们先尝试在单位元附近展开$U$, 并且先只关心其时空平移部分, 由于这是一个非常简单的阿贝尔群, 我们得到:
+\begin{equation}
+    U(I, \epsilon)=I+iP^\mu\epsilon_\mu+O(\epsilon^2)
+\end{equation}
+其中$P$算符的各个分量是相互对易的, 而且都是厄米的. 从上式还原$U$的通常表达式也就有:
+\begin{equation}
+    U(1,a)=e^{iP^\mu a_\mu}
+\end{equation}
+\begin{remark}
+    经验老道的同学一定发现了我们实际上开始讨论李群的李代数的表示了.
+\end{remark}
+由于$\alpha$的形式, 我们可以把$U^{-1}(I, t)$与物理态$|\phi\rangle$结合写作$|\phi(t)\rangle=U^{-1}(I, t)|\phi\rangle$, 这应当被理解为将态$|\phi\rangle$所代表的所有信息做$(I, -t)$的移动后的态. 然后将一个特定等时间面$\Sigma$上的全体可观测量$\mathcal{A}(\Sigma)$取出, 将可观测量的名字与其中元素一一对应. 也就是说我们使得态随着时间变化而变化, 而可观测量不因为是定义在不同的时刻而不同. 我们已经将$U(1,a)$写作$e^{iP^\mu a_\mu}$, 所以就有$|\phi(t)\rangle=e^{-iHt}|\phi\rangle$, 也可以再对$t$做微分, 得到$\partial_t|\phi(t)\rangle=-iHe^{-iHt}|\phi\rangle=-iH|\phi(t)\rangle$. 这就是薛定谔表象与薛定谔方程. 当然进一步, 对于空间平移我们也可以做类似的事情, 也就有:
+\begin{equation}
+    \partial_{x^\mu}|\phi(x)\rangle=-iP_ie^{-iP^\mu x_\mu}|\phi\rangle=-iP_\mu|\phi(x)\rangle
+\end{equation}\par
+\section{单粒子的量子力学}
+接下来这一步是单体的量子力学与量子场论分道扬镳之处: 我们开始着手实践并试图量子化一个粒子. 经典地来说, 我们只要知道一个粒子的世界线方程, 我们就知道了它的所有运动信息, 也就是说, 如果我们能够测量粒子参数化的坐标下它每时每刻的位置: $x^\mu(\tau)$, 我们就知道了它的一切信息.\par
+\begin{remark}
+    经验老道的同学一定会发现, 如果我们尝试直接量子化一个以参数化曲线描述的粒子, 我们不仅会对在全空间中锁定粒子位置这一听上去就不是很局域化的测量感到困惑, 而且将陷入对重参数化这一规范对称性的讨论, 进而需要什么笔者到目前为止还没学会的BRST量子化手段. 所以我们并不打算通过单粒子作用量$S=\int md\tau \sqrt{\dot{x}^\mu\dot{x}_\mu}$强行量子化单个粒子, 而是开始另辟蹊径.
+\end{remark}
+我们知道对于通过固有时参数化的经典粒子, 有$p^\mu p_\mu=m^2$. 与此同时, $\operatorname{SO}^+(3, 1)\ltimes\mathbb{R}^4$的李代数有喀斯米尔算子$P^\mu P_\mu=m^2$. 于是我们空降一个新原理: 单粒子波函数所在的Hilbert空间实际上承载了李代数进而李群的不可约表示. 也就是说, 存在一个$U: \operatorname{SO}^+(3, 1)\ltimes\mathbb{R}^4\rightarrow\operatorname{GL}(\mathcal{H}):(\Lambda,a)\mapsto U(\Lambda,a)$, 且这些$U(\Lambda,a)$不能被同时分块对角化.\par
+由于$P^\mu$相互对易而且均为厄米算符, 对于不可约表示, 我们可以用它们的共同本征态作为Hilbert空间的正交完备基. 当然可能出现对$P^\mu$本征态的简并, 例如出现自旋等内部自由度, 我们暂且不考虑, 即考虑自旋为零的粒子.\par
+在这种最简单的情况下, 我们将$P^\mu$的共同本征态标记为
+\begin{equation}
+    P^\mu\ket{p}=p^\mu\ket{p}
+\end{equation}
+由于不可约的要求进而有喀斯米尔算符的限制:
+\begin{equation}
+    p^\mu p_\mu=m^2
+\end{equation}
+也就是说$p^\mu$的取值被限制在一个旋转双曲面上. 我们希望粒子具有正的能量本征值, 所以我们取其中正能量的一支, 那么正交完备关系的积分应当被限制在这一支双曲面上, 于是我们不妨只取出$p^\mu$的空间部分, 记作$p^i$, 或者记作$\mathbf{p}$, 对于这一积分的限制有等式:
+\begin{equation}
+    \int dp\delta(p^2-m^2)\theta(p^0)f(p)=\int \frac{d\mathbf{p}}{2\omega_\mathbf{p}}f(\omega_\mathbf{p}, \mathbf{p})
+\end{equation}
+其中$\omega_\mathbf{p}=\sqrt{\mathbf{p}^2+m^2}$.
+于是完备关系可以叙述为:
+\begin{equation}
+    \int \frac{dp}{(2\pi)^3}\delta(p^2-m^2)\theta(p^0)|p\rangle\langle p|=\int \frac{d\mathbf{p}}{2\omega_\mathbf{p}(2\pi)^3}|p\rangle\langle p|=I
+\end{equation}
+定义:
+\begin{equation}
+    \ket{\mathbf{p}}=\frac{\ket{p}}{\sqrt{2\omega_\mathbf{p}}\sqrt{(2\pi)^3}}
+\end{equation}
+我们就有了简单的完备关系:
+\begin{equation}
+    \int d\mathbf{p}|\mathbf{p}\rangle\langle \mathbf{p}|=I
+\end{equation}
+我们已经得到了一个承载了庞加莱群的不可约表示的Hilbert空间, 它是由平移生成元的共同本征态张成的, 也就是动量本征态. 既然有了动量本征态, 我们尝试定义不同时间的空间位置算符$\mathbf{X}(t)$的本征态.\par
+我们先思考一个问题, 究竟什么是位置算符, 我们希望它有如下性质:
+\begin{enumerate}[(i)]
+    \item $\mathbf{X}=\mathbf{X}^\dagger$
+    \item 由于我们可以将$U(R, \mathbf{a})$理解为将一个物理态的所有信息转动$R$后再移动$a$, 所以测量这样一个被移动过的态的位置, 就会有:
+          \begin{equation}
+              U^{-1}(R, \mathbf{a})\mathbf{X}U(R, \mathbf{a})=R\mathbf{X}+\mathbf{a}
+          \end{equation}
+    \item 进行时间平移有:
+          \begin{equation}
+              U(I, t')\mathbf{X}(t)U^{-1}(I, t')=\mathbf{X}(t+t')
+          \end{equation}
+\end{enumerate}\par
+事实上只要用我们熟悉的结果就行:
+\begin{equation}
+    \langle \mathbf{p}|\mathbf{X}^i(0)|\mathbf{q}\rangle=i\delta(\mathbf{p}-\mathbf{q})\frac{\partial}{\partial p_i}
+\end{equation}
+继而我们可以得到$\mathbf{X}(t)$的本征态$|t, \mathbf{x}\rangle$, 通过:
+\begin{equation}
+    \langle 0, \mathbf{x}|\mathbf{X}(0)|\mathbf{p}\rangle=x^i\langle 0, \mathbf{x}|\mathbf{p}\rangle=i\frac{\partial}{\partial p_i}\langle x|\mathbf{p}\rangle
+\end{equation}
+得到:
+\begin{equation}
+    \langle 0, \mathbf{x}|\mathbf{p}\rangle=Ce^{-ip^i x_i}
+\end{equation}
+进而:
+\begin{equation}
+    \langle t, \mathbf{x}|\mathbf{p}\rangle=\langle 0, \mathbf{x}|U^{-1}(I, t)|\mathbf{p}\rangle=Ce^{-ip^\mu x_\mu}
+\end{equation}
+狭义相对论告诉我们信息的传播速度不能超过光速, 我们试图在相对论性量子力学中复现这一结果, 如果我们认为需要:
+\begin{equation}
+    \langle x^0, \mathbf{x}|y^0, \mathbf{y}\rangle=\int \frac{d\mathbf{p}}{2\omega_\mathbf{p}(2\pi)^3}\langle x|p\rangle\langle p|y\rangle=\int d\mathbf{p}|C|^2e^{-ip^\mu (x_\mu-y_\mu)}=0
+\end{equation}
+而很遗憾的是这一函数在$x$与$y$具有类空间隔时实际上并不为零.\par
+这个时候我们应该回想起最开始我们希望相对论性量子力学满足的最后一条原则:\par
+如果两个时空区域$O_1, O_2$没有任何因果联系, 那么有$[\mathcal{A}(O_1), \mathcal{A}(O_2)]=0$, 也就是两个空间上做的测量结果应当没有任何关联.\par
+这下我们大概也就知道问题所在了, 位置算符根本就没有办法被理解为局域在某个时空区域上的算符, 也就是说, 我们必须放弃这一算符的可观测性.
+
+\ifx\ALL\undefined
+\end{document}
+\fi

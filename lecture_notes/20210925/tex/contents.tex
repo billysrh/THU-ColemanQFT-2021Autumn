@@ -1,0 +1,16 @@
+\ifx\ALL\undefined
+\input{preamble}
+\begin{document}
+\maketitle
+\fi
+
+\pagenumbering{Roman}
+\setcounter{page}{1}
+\tableofcontents
+\newpage
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+\ifx\ALL\undefined
+\end{document}
+\fi

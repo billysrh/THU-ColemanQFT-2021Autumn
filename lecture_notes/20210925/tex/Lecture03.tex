@@ -1,0 +1,98 @@
+\ifx\ALL\undefined
+\input{preamble}
+\begin{document}
+\maketitle
+\setcounter{chapter}{2}
+\fi
+
+\chapter{从经典场到量子场}
+再次思考我们最初提出的相对论性的量子力学应当满足的条件, 以及为什么单粒子希尔伯特空间的构造不能满足这些要求. 其中最关键的是我们将什么作为可观测量, 对于单粒子的位置的测量是难以界定在一个时空区域上的, 我们也就无法构建$\mathcal{A}$这一给出每个时空区域上可观测量的函子. 于是我们回想起经典力学中, 所谓粒子不过是质点, 可以理解为我们对质量场的一种近似方式, 所以我们开始思考场的量子化.
+\section{经典场论}
+当我们将视线转向经典场论时, 一切似乎又变得明朗起来. 对场的测量, 例如精确测量时空某处的电场这一操作可以被理解为一个泛函:
+\begin{equation*}
+    \mathbf{E}(x): C^\infty(\mathbb{R}^4, \mathbb{R}^3)\rightarrow\mathbb{R}^3:\mathbf{e}\in C^\infty(\mathbb{R}^4, \mathbb{R}^3)\mapsto \mathbf{e}(x)\in\mathbb{R}^3
+\end{equation*}\par
+当然实际上我们的仪器远远没有那么理想, 实际的测量或许是对局部时空区域场取值的某种平均, 也就是:
+\begin{align*}
+    \int_Odxf(x)\mathbf{E}(x): C^\infty(\mathbb{R}^4, \mathbb{R}^3)&\rightarrow\mathbb{R}^3\\
+    \mathbf{e}\in C^\infty(\mathbb{R}^4, \mathbb{R}^3)&\mapsto \int_Odxf(x)\mathbf{e}(x)\in\mathbb{R}^3
+\end{align*}\par
+我们尝试用同样的视角看看我们的实标量场, 我们定义:
+\begin{align}
+    \phi(x): C^\infty(\mathbb{R}^4, \mathbb{R})&\rightarrow\mathbb{R}\\
+    h\in C^\infty(\mathbb{R}^4, \mathbb{R})&\mapsto h(x)\in\mathbb{R}
+\end{align}
+我们大概能够想到, 对于一个实标量场, 我们能够测量的最基础物理量就是$\phi(x)$, 因为如果我们知道了这个实标量场每时每刻的振幅, 我们也就感到我们知道了关于这个场的一切信息, 因为我们总是可以进行一些运算, 包括加减乘除, 积分, 求导等等, 以得到其他物理量. 将来我们提到的场实际上都可以被理解为这个泛函.\par
+对于标量场的量子化版本, 我们希望将基本的测量, 也就是我们所谓的泛函$\phi(x)$提升为一个算符, 进而也就对所有经典可观测量做到了同一点. $\phi(x)$作为量子版本的测量含义也就是对$\phi$在$x$处振幅大小的提取.\par
+然而有一点非常关键, 就是提升为量子版本的可观测量们作为算符, 不一定能够互相对易, 即使经典场的乘积在被理解为观测结果的实数或者复数乘积时显然是交换的.\par
+但是我们都知道哪怕是经典场也是有一个似乎描述不互易性的李括号的, 也就是泊松括号. 不过我们学经典力学的时候只学了对同一时刻的两个可观测量计算它. 显然这不够优美, 因为看不出协变性, 我们也不知道不同时刻的观测量的对易子应该是什么.\par
+好在这一推广实际上是非常自然的. 从经典场论的哈密顿形式我们知道:
+\begin{align}
+    \{\phi(x^0, \mathbf{x}), \pi(y^0, \mathbf{y})\}|_{x^0=y^0}&=\delta(\mathbf{x}-\mathbf{y})\\
+    \{\phi(x^0, \mathbf{x}), \phi(y^0, \mathbf{y})\}|_{x^0=y^0}&=0
+\end{align}
+我们同时希望这个括号能与积分求导互易, 也就是:
+\begin{align}
+    \left\{\partial_x A(x), B(y)\right\}&=\partial_x\left\{A(x), B(y)\right\}\\
+    \left\{\int d\mu(x)A(x), B(y)\right\}&=\int d\mu(x)\left\{A(x), B(y)\right\}
+\end{align}
+继而我们对$\{\phi(x), \phi(y)\}$自然地做出进一步的要求:
+\begin{equation}
+    (\square_x+m^2)\{\phi(x), \phi(y)\}=\{(\square_x+m^2)\phi(x), \phi(y)\}=0
+\end{equation}
+\begin{remark}
+    其实对于积分的要求能够推出微分的要求, 只要做一次分部积分即可.
+\end{remark}
+最后我们实际上得到了一个关于$\{\phi(x), \phi(y)\}$的二阶偏微分方程以及初值条件:
+\begin{align}
+    (\square_x+m^2)\{\phi(x^0, \mathbf{x}), \phi(y^0, \mathbf{y})\}&=0\\
+    \partial_{x^0}\{\phi(x^0, \mathbf{x}), \phi(y^0, \mathbf{y})\}|_{x^0=y^0}&=-\delta(\mathbf{x}-\mathbf{y})\\
+    \{\phi(x^0, \mathbf{x}), \phi(y^0, \mathbf{y})\}|_{x^0=y^0}&=0
+\end{align}
+然后我们求解得到:
+\begin{align}
+    \{\phi(x), \phi(y)\}&=\Delta(x-y)\\
+    &=\Delta^{\text{ret}}(x-y)-\Delta^{\text{ret}}(y-x)\\
+    \Delta^{\text{ret}}(x-y)&=\frac{1}{(2\pi)^4}\int dp\frac{e^{-ip(x-y)}}{p^2-m^2+ip0^+}
+\end{align}
+随后对于一般的泛函$A(x)$和$B(x)$我们定义:
+\begin{equation}
+    \{A(x), B(y)\}=\int dx'dy'\frac{\delta A(x)}{\delta \phi(x')}\Delta(x'-y')\frac{\delta B(y)}{\delta \phi(y')}
+\end{equation}
+\section{量子化}
+接下来我们着手量子化我们的经典标量场, 我们先在这一特定情况下具体地描述量子力学的原则:
+\begin{enumerate}[(i)]
+    \item 我们将$\phi(x)$这一经典的泛函提升为一个算符, 而$\mathcal{A}(O)$定义为只使用$\{\phi(x):x\in O\}$经过加减乘除, 积分, 求导等操作构成算符组成的代数;
+    \item 对于时空区域$O_1, O_2$如果有$O_1\subset O_2$, 那么自然地就有了$\mathcal{A}(O_1)\subset \mathcal{A}(O_2)$;
+    \item $\alpha_{(\Lambda, a)}$定义为:
+    \begin{equation}
+        \alpha_{(\Lambda, a)}\phi(x)=U(\Lambda, a)\phi(x)U^{-1}(\Lambda, a)=\phi(\Lambda x+a)
+    \end{equation}
+    可以简单验证这一就自然满足了我们对$\alpha_{(\Lambda, a)}$的要求;
+    \item 对于具有类空间隔的时空点$x$和$y$, 有:
+    \begin{equation}
+        [\phi(x), \phi(y)]=0;
+    \end{equation}
+    对于一般的算符$A(x)$和$B(y)$, 我们希望已有的经典括号至少在$O(\hbar)$精确度下成立, 也就是:
+    \begin{equation}
+        [A(x), B(y)]=i\hbar\{A(x),B(y)\}+O(\hbar^2)
+    \end{equation}
+    \begin{remark}
+        肯定有同学会疑惑, 为什么不要求做到精确成立呢? 因为事实上我们做不到这一点. 但是对于简单的$\phi(x)$和$\phi(y)$, 这个式子的确是能够精确成立的.
+    \end{remark}
+\end{enumerate}\par
+接下来是见证``奇迹''的时刻, 我们定义:
+\begin{align}
+    \phi(x)&=\int \frac{d\mathbf{p}}{2\omega_\mathbf{p}(2\pi)^3}\left(a(p)^{-ipx}+a^\dagger(p)^{ipx}\right)\\
+    &=\int d\mu(p)\left(a(p)^{-ipx}+a^\dagger(p)^{ipx}\right)\\
+    &=a(x)+a^\dagger(x)
+\end{align}
+此外$\operatorname{SO}^+(3, 1)\ltimes\mathbb{R}^4$的李代数的元素$P$等都理解为单体算符在Fock空间上的自然推广. 这样构造出的标量场的量子版本满足了我们所有的要求.\par
+我们再列出一些后续可能用到的等式:
+\begin{align}
+    [a(x), a^\dagger(y)]&=\int d\mu(p)e^{-ip^\mu (x_\mu-y_\mu)}\\
+    P^\mu&=\int d\mu(p)a(p)^\dagger p^\mu a(p)
+\end{align}
+\ifx\ALL\undefined
+\end{document}
+\fi

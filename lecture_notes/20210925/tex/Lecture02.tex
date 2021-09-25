@@ -1,0 +1,106 @@
+\ifx\ALL\undefined
+\input{preamble}
+\begin{document}
+\maketitle
+\setcounter{chapter}{1}
+\fi
+
+\chapter{Fock空间}
+\section{多体Hilbert空间}
+我们已经发现了描述单粒子的希尔伯特空间并不能很好地满足我们对于相对论性量子力学的期待, 我们自然要思考怎么样的希尔伯特空间与可观测量能够与我们的假设匹配.\par
+幸运的是, 至少对于自由粒子, 我们能做出一个非常简单的构造. 相对论允许粒子的分裂与融合这一事实启发我们将先前描述单粒子的Hilbert空间换做描述同一种粒子, 但是允许多个粒子同时存在的空间, 我们称这一的空间为Fock空间, 当然它其实也是个Hilbert空间, 只是我们对这具有一些特定结构的Hilbert空间有一个更加具体的名字.\par
+接下来我们列举从一个任意的单粒子希尔伯特空间$\mathcal{H}$出发构造它的Fock空间$\mathcal{F}$时最重要的性质与定义.\par
+\begin{enumerate}[(i)]
+    \item 对玻色子$\mathcal{F}=S(\mathcal{H})=\bigoplus_0^\infty \operatorname{Sym}^n(\mathcal{H})$或对费米子$\mathcal{F}=\operatorname{\bigwedge}(\mathcal{H})=\bigoplus_0^\infty \operatorname{\bigwedge}^n(\mathcal{H})$, 注意到其中$\operatorname{Sym}^0(\mathcal{H})=\operatorname{\bigwedge}^0(\mathcal{H})=\mathbb{C}$;
+    \item 具体地, 将$S(\mathcal{H})$或$\operatorname{\bigwedge}(\mathcal{H})$中的态矢记作:
+    \begin{equation}
+        |\phi\rangle=(|{\phi\rangle}_0, {|\phi\rangle}_1, {|\phi\rangle}_2, \cdots, {|\phi\rangle}_n, \cdots)
+    \end{equation}
+    并定义内积为:
+    \begin{equation}
+        \langle\psi|\phi\rangle=\sum_{0}^\infty \sideset{_n}{_n}{\mathop{\langle\psi|\phi\rangle}}
+    \end{equation}
+    其中$n$粒子空间$\operatorname{Sym}^n(\mathcal{H})$或$\operatorname{\bigwedge}^n(\mathcal{H})$的内积使用$\mathcal{H}^{\otimes n}$中的内积;
+    \item 特别地, 我们可以定义一个``真空态'':
+    \begin{equation}
+        |\Omega\rangle=(1, 0, \cdots, 0, \cdots)
+    \end{equation}
+    以及一个``粒子数算符'':
+    \begin{equation}
+        {(N|\phi\rangle)}_n=n{|\phi\rangle}_n
+    \end{equation}
+    \item 若$\mathcal{H}$有具有完备关系$\int d\mu(\alpha) |\psi(\alpha)\rangle\langle\psi(\alpha)|=I$的完备基$|\psi(\alpha)\rangle$, 那么就可以构造一组算符与它们一一对应:
+    \begin{multline}
+        (a(\alpha)|\phi\rangle)_n=\\
+        \sqrt{n+1}\left(\int\prod_1^n d\mu(\beta_i) \bigotimes_1^n|\psi(\beta_i)\rangle\langle\psi(\alpha)|\otimes\bigotimes_1^n\langle\psi(\beta_i)|\right)|\phi\rangle_{n+1}
+    \end{multline}
+    \begin{multline}
+        (a^\dagger(\alpha)|\phi\rangle)_n=\\
+        \begin{dcases}
+            0&n=0\\
+            \frac{1}{\sqrt{n}}\sum_{i=0}^{n-1}(\pm1)^i\int\prod_{j=1}^{n-1} d\mu(\beta_j)\\
+            \quad|\psi(\beta_1)\rangle\otimes\cdots\otimes|\psi(\alpha)\rangle\otimes|\psi(\beta_{j+i})\rangle\otimes\cdots\otimes|\psi(\beta_{n-1})\rangle\\
+            \quad\quad\left(\bigotimes_{j=1}^{n-1}\langle\psi(\beta_j)|\right)|\phi\rangle_{n-1}&n\neq0
+        \end{dcases}
+    \end{multline}
+    同时可以验证:
+    \begin{equation}
+        \int\mu(\alpha)a^\dagger(\alpha)a(\alpha)=N
+    \end{equation}
+    \begin{equation}
+        {[a(\alpha), a^\dagger(\beta)]}_\pm=\delta_\mu(\alpha-\beta)
+    \end{equation}
+    \begin{equation}
+        {[a(\alpha), a(\beta)]}_\pm=0
+    \end{equation}
+    \begin{equation}
+        a^\dagger(\alpha)|\Omega\rangle=(0,|\psi(\alpha)\rangle,0,0,\cdots)
+    \end{equation}
+    \item 如果我们有一个$n$体算符, 也就是预先定义在$\operatorname{Sym}^n(\mathcal{H})$或$\operatorname{\bigwedge}^n(\mathcal{H})$上的算符$O_n$, 那么它在$\mathcal{F}$上有自然的扩展:
+    \begin{multline}
+        O=\int\prod_1^n\mu(\alpha_i)\prod_1^n\mu(\beta_j)\\
+        \prod_1^na^\dagger(\alpha_i)\left(\bigotimes_1^n\langle\psi(\alpha_i)|\right)O_n\left(\bigotimes_1^n|\psi(\beta_i)\rangle\right)\prod_1^nb(\beta_{n+1-i})
+    \end{multline}
+\end{enumerate}
+\section{实标量场Fock空间}
+接下来我们构建实标量粒子所在的Fock空间.\par
+我们认为实标量场代表了玻色子, 那么按照我们构造方法, 只需要知道单粒子空间$\mathcal{H}$是什么, 就能自然得到它对应的Fock空间$\mathcal{F}$了.\par
+\begin{remark}
+    后面我们会看到, 实标量场是玻色子的主要原因是我们想要满足先前提到的因果条件.
+\end{remark}
+回忆第一章, 我们其实已经构建好$\mathcal{H}$了. 于是简单带入一下就有:
+\begin{enumerate}[(i)]
+    \item
+    \begin{equation}
+        \int d\mu(\alpha) |\psi(\alpha)\rangle\langle\psi(\alpha)|=I
+    \end{equation}
+    即:
+    \begin{equation}
+        \int d\mu(p)|p\rangle\langle p|=I
+    \end{equation}
+    其中:
+    \begin{equation}
+        \int d\mu(p)=\int \frac{dp}{(2\pi)^3}\delta(p^2-m^2)\theta(p^0)=\int \frac{d\mathbf{p}}{2\omega_\mathbf{p}(2\pi)^3}
+    \end{equation}
+    \item
+    \begin{equation}
+        \int\mu(p)a^\dagger(p)a(p)=N
+    \end{equation}
+    \begin{equation}
+        {[a(p), a^\dagger(q)]}_\pm=\delta_\mu(p-q)=2\omega_\mathbf{p}(2\pi)^3\delta(\mathbf{p}-\mathbf{q})
+    \end{equation}
+    \begin{equation}
+        {[a(p), a(q)]}_\pm=0
+    \end{equation}
+    \begin{equation}
+        a^\dagger(p)|\Omega\rangle=(0,|\psi(p)\rangle,0,0,\cdots)=(0,|p\rangle,0,0,\cdots)
+    \end{equation}
+    \begin{equation}
+        P^\mu=\int d\mu(p)a(p)^\dagger p^\mu a(p)
+    \end{equation}
+\end{enumerate}
+
+
+\ifx\ALL\undefined
+\end{document}
+\fi
